@@ -55,6 +55,7 @@ public class AmazonTest extends TestBase {
         Select select = new Select(mainPage.tümKategorilerSelect);
         select.selectByVisibleText("Bilgisayarlar");
         extentLogger.info("Bilgisayar kategorisi seçildiği kontrol edilir.");
+        BrowserUtils.waitFor(3);
         Assert.assertTrue(select.getFirstSelectedOption().isDisplayed());
         extentLogger.info("Arama alanına msi yazılır ve arama yapılır.");
         listePage.araInputBox.sendKeys("msi");
