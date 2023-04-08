@@ -19,10 +19,14 @@ public class GirisYapPage extends BasePage {
     public WebElement imageInputBox;
     @FindBy(css = "#auth-signin-button")
     public WebElement girisYaTryCatchButton;
+    @FindBy(xpath = "//a[text()='Giriş yap']")
+    public WebElement girisYapIlk;
 
 
     public void girisYap(String email, String password) {
-        girisHover.click();
+        BrowserUtils.waitFor(1);
+        BrowserUtils.hover(girisHover);
+        BrowserUtils.clickWithJS(girisYapIlk);
         BrowserUtils.waitFor(3);
         emailInputBox.sendKeys(email);
         devametButton.click();

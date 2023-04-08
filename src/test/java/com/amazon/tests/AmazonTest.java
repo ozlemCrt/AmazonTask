@@ -63,11 +63,13 @@ public class AmazonTest extends TestBase {
         extentLogger.info("Arama yapıldığı kontrol edilir.");
         msiPage.verfyTitle("Amazon.com.tr : msi");
         extentLogger.info("Arama sonuçları sayfasından 2. sayfa açılır.");
+        msiPage.sayafayaGit(2);
+        extentLogger.info("2. sayfanın açıldığı kontrol edilir.");
+        msiPage.verifyPageNumber("2");
+        extentLogger.info("Sayfadaki 2. ürün oluşturulan “SetCard Liste” listesine eklenir.");
         String expectedurun = msiPage.UruneGetir(2).getText();
         msiPage.UruneGetir(2).click();
-        extentLogger.info("2. sayfanın açıldığı kontrol edilir.");
         Assert.assertEquals(urunPage.urunAdı.getText(), expectedurun);
-        extentLogger.info("Sayfadaki 2. ürün oluşturulan “SetCard Liste” listesine eklenir.");
         urunPage.listeyeEkleButton.click();
         urunPage.listeniziGörüntüleyinButton.click();
         extentLogger.info("2. Ürünün listeye eklendiği kontrol edilir.");

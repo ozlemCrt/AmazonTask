@@ -49,7 +49,7 @@ public class ListePage extends BasePage {
         BrowserUtils.scrollToElement(listeyiSilButton);
         BrowserUtils.waitFor(3);
         BrowserUtils.clickWithJS(listeyiSilButton);
-        BrowserUtils.waitForClickablility(evetButton, 7);
+        BrowserUtils.waitFor(3);
         BrowserUtils.clickWithJS(evetButton);
     }
 
