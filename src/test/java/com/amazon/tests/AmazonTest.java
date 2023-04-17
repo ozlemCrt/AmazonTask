@@ -34,12 +34,18 @@ public class AmazonTest extends TestBase {
             BrowserUtils.clickWithJS(mainPage.hesabımtryCatch);
         }
         extentLogger.info("Siteye login olunur.");
+        try {
         girisYapPage.girisYap(ConfigurationReader.get("userEmail"), ConfigurationReader.get("password"));
         extentLogger.info("Login işlemi kontrol edilir.");
-        try {
+
             Assert.assertEquals(mainPage.userName.getText(), ConfigurationReader.get("userName"));
         } catch (Exception e) {
-            girisYapPage.sifreInputBox.sendKeys(ConfigurationReader.get("password"));
+            Driver.get().navigate().refresh();
+            girisYapPage.girisYap(ConfigurationReader.get("userEmail"), ConfigurationReader.get("password"));
+            extentLogger.info("Login işlemi kontrol edilir.");
+
+            Assert.assertEquals(mainPage.userName.getText(), ConfigurationReader.get("userName"));
+           /* girisYapPage.sifreInputBox.sendKeys(ConfigurationReader.get("password"));
             BrowserUtils.waitForClickablility(girisYapPage.imageInputBox, 7);
             girisYapPage.imageInputBox.sendKeys("sfynpt");
             girisYapPage.girisYaTryCatchButton.click();
@@ -47,6 +53,8 @@ public class AmazonTest extends TestBase {
             webDriverWait.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(girisYapPage.sifreInputBox)));
             girisYapPage.sifreInputBox.sendKeys(ConfigurationReader.get("password"));
             Assert.assertEquals(mainPage.userName.getText(), ConfigurationReader.get("userName"));
+
+            */
         }
         extentLogger.info("Hesabım bölümünden “SetCard Liste” isimli yeni bir liste oluşturulur.");
         listePage.yeniListeOlustur("SetCard Liste");

@@ -9,7 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class BrowserUtils {
     public static String getScreenshot(String name) throws IOException {
@@ -76,6 +78,13 @@ public class BrowserUtils {
             wait.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(element)));
             element.click();
         }
+    }
+    public static List<String> getElementsText(List<WebElement> list) {
+        List<String> elemTexts = new ArrayList<>();
+        for (WebElement el : list) {
+            elemTexts.add(el.getText());
+        }
+        return elemTexts;
     }
 
 
